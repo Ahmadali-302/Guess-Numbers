@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Guessing Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Guessing Game</h1>
+  <p>Guess a number between 1 and 100:</p>
+  <input type="number" id="guess" min="1" max="100" />
+  <button id="guessButton">Guess</button>
+  <p id="message"></p>
+
+  <script>
+const randomNumber = Math.floor(Math.random() * 100) + 1;
+let numberOfGuesses = 0;
+function checkGuess() {
+  const userGuess = Number(document.getElementById('guess').value);
+  numberOfGuesses++;
+  if (userGuess === randomNumber) {
+    displayMessage(`Congratulations! You guessed the number in ${numberOfGuesses} ${numberOfGuesses === 1 ? 'guess' : 'guesses'}!`);
+    displayMessage('Too low. Try again.');
+  } else {
+    displayMessage('Too high. Try again.');
+  }
+}
+function displayMessage(message) {
+  document.getElementById('message').textContent = message;
+}
+document.getElementById('guessButton').addEventListener('click', checkGuess);
+</script>
+</body>
+</html>
